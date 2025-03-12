@@ -24,7 +24,7 @@ Requirements:
 pip install torch einops
 ```
 
-## Usage
+## Basic Usage
 
 ```python
 import torch
@@ -44,6 +44,47 @@ x = torch.randn(1, 1024, 512)  # [batch_size, sequence_length, dimension]
 
 # Get attention output
 output = attn(x)
+```
+
+## Examples
+
+The repository includes several examples demonstrating different use cases:
+
+### 1. Basic Flash Attention
+```python
+from examples.basic_usage import test_flash_attention
+
+# Test basic flash attention with standard sequence length
+test_flash_attention()
+```
+
+### 2. Sliding Window Attention for Long Sequences
+```python
+from examples.basic_usage import test_sliding_window_attention
+
+# Test attention with long sequences using sliding window
+test_sliding_window_attention()
+```
+
+### 3. Transformer Block Implementation
+```python
+from examples.basic_usage import test_transformer_block
+
+# Test attention in a transformer block context
+test_transformer_block()
+```
+
+### 4. Text Classification Example
+```python
+from examples.basic_usage import test_text_classifier
+
+# Test attention for text classification
+test_text_classifier()
+```
+
+To run all examples:
+```bash
+python examples/basic_usage.py
 ```
 
 ## Architecture Details

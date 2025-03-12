@@ -82,9 +82,52 @@ from examples.basic_usage import test_text_classifier
 test_text_classifier()
 ```
 
+### 5. Vision Models
+The repository includes examples of using the attention mechanism in vision models:
+
+#### Vision Transformer (ViT)
+```python
+from examples.vision_models import SimpleViT
+
+# Initialize ViT with Flash Attention
+vit = SimpleViT(
+    img_size=224,
+    patch_size=16,
+    in_channels=3,
+    num_classes=1000,
+    embed_dim=768,
+    depth=12,
+    heads=12
+)
+
+# Process image
+img = torch.randn(1, 3, 224, 224)
+output = vit(img)
+```
+
+#### Hybrid CNN-Attention
+```python
+from examples.vision_models import HybridCNNAttention
+
+# Initialize hybrid model
+model = HybridCNNAttention(
+    in_channels=3,
+    num_classes=1000
+)
+
+# Process image
+img = torch.randn(1, 3, 224, 224)
+output = model(img)
+```
+
+The vision models demonstrate two approaches to incorporating attention:
+1. **Pure Transformer (ViT)**: Processes images using only attention mechanisms
+2. **Hybrid CNN-Attention**: Combines convolutional layers with attention for feature refinement
+
 To run all examples:
 ```bash
 python examples/basic_usage.py
+python examples/vision_models.py
 ```
 
 ## Architecture Details
@@ -110,6 +153,7 @@ python examples/basic_usage.py
 - Flash attention is automatically used when running on supported CUDA devices
 - Window size can be adjusted based on available memory and sequence length
 - Number of key-value heads can be reduced for better efficiency
+- For vision models, patch size and number of heads can be tuned based on image size
 
 ## Citation
 
